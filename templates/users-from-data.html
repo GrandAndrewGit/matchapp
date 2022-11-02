@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Users from data files</h1>
+    </div>
+
+    {% if nodata %}
+    <div class="col-12 main-col">
+      <h3>No data to process!</h3>
+    </div>
+    {% else %}
+    <div class="col-12 main-col">
+      <div class="btns-wrapper">
+        <a href="{% url 'match_app:import-users' %}" class="btn btn-primary">Import users into DB</a>
+        <a href="{% url 'match_app:delete-dataset' %}" class="btn btn-secondary">Download new csv and xml</a>
+      </div>
+      <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Username</th>
+              <th scope="col">First name</th>
+              <th scope="col">LastName</th>
+              <th scope="col">Date joined</th>
+              <th scope="col">Avatar</th>
+              <th scope="col">Unique</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for user in users %}
+            <tr>
+              <th scope="row">{{ user.username }}</th>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.date_joined }}</td>
+              <td><a href="{{ user.avatar }}">avatar</a></td>
+              <td>{{ user.is_unique }}</td>
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+

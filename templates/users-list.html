@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>All users in DB</h1>
+    </div>
+    <div class="col-12">
+        <div class="dwn-block">
+            
+            <table class="table table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Date joined</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Admin</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                  <tr>
+                    <th scope="row">{{ user.username }}</th>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.date_joined }}</td>
+                    <td><a href="{{ user.avatar_link }}">avatar</a></td>
+                    <td>{{ user.is_staff }}</td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

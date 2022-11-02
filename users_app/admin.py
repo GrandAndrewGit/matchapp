@@ -1,0 +1,24 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ('username', 'is_staff', 'is_active')
+
+    fieldsets = (
+        ('User\'s fields', {'fields': ('username', 'password', 'first_name', 'last_name', 'avatar_link', 'last_login', 'date_joined')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups', 'user_permissions')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'password1', 'password2', 'first_name', 'last_name', 'avatar_link', 'is_staff', 'is_active', 'groups', 'user_permissions')}
+        ),
+    )
+
+admin.site.register(CustomUser, CustomUserAdmin)

@@ -1,0 +1,37 @@
+.main-col {
+    padding-top: 60px;
+}
+.dwn-block .card-body {
+    padding: 70px 0px;
+}
+.dwn-block {
+    margin-top: 40px;
+}
+
+.card-body label {
+    display: block;
+}
+
+input{
+    display: none;
+  }
+  label{
+    cursor:pointer;
+  }
+  #imageName{
+    color:green;
+  }
+
+#csvName {
+    display: block;
+    width: 100%;
+}
+.filename-col {
+    border-bottom: 1px solid #ccc;
+}
+.btns-wrapper {
+    margin-bottom: 30px;
+}
+.logout-wrapper {
+    float: right;
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Please log in to proceed</h1>
+    </div>
+    <div class="col-lg-6 offset-lg-3 col-12 text-center">
+        <div class="dwn-block"> 
+
+          {% if user.is_authenticated %}
+          <h4>You have already been logged in.</h4>
+          {% else %}
+
+          <form action="." method="post">
+            {% csrf_token %}
+            <div class="col-12">
+              <label for="id_username" class="form-label">Username</label>
+              <input type="username" class="form-control" name="username" required id="id_username">
+            </div>
+            <div class="col-12">
+              <br>
+              <label for="id_password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" required id="id_password">
+            </div>
+            <div class="col-12 text-center">
+              <br>
+              <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+          </form>
+
+
+          {% endif %}
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Data Set Creation</h1>
+    </div>
+    <div class="col-12">
+        <div class="dwn-block">
+            <div class="card text-center">
+                <div class="card-body">
+
+                    {% if deny_access %}
+                        <h4>You have unprocessed dataset so you can't create new one. <br>Finish with the previous one please.</h4><br>
+                        <a href="{% url 'match_app:match-data' %}" class="btn btn-primary">Match CSV and XML</a>
+                        <a href="{% url 'match_app:delete-dataset' %}" class="btn btn-warning">Download new files</a>
+                    {% elif deny_access_users %}
+                        <h4>You have to import users into database <br>before making new import of csv/xml files.</h4><br>
+                        <a href="{% url 'match_app:import-users' %}" class="btn btn-primary">Import new users</a>
+                        <a href="{% url 'match_app:delete-dataset' %}" class="btn btn-warning">Download new files</a>
+                    {% elif form %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <label for="id_csv_file">
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 col-12">
+                                        <div class="row text-center">
+                                            <div class="col-6 filename-col">
+                                                <span id="csvName"></span>
+                                            </div>
+                                            <div class="col-6" id="first-input-wrapper">
+                                                <span class="btn btn-outline-primary">Select CSV file</span> <br/>
+                                                <input id="id_csv_file" type="file" name="csv_file" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </label>
+
+                        <br><br>
+                        <label for="id_xml_file">
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 col-12">
+                                        <div class="row text-center">
+                                            <div class="col-6 filename-col">
+                                                <span id="xmlName"></span>
+                                            </div>
+                                            <div class="col-6" id="second-input-wrapper">
+                                                <span class="btn btn-outline-primary">Select XML file</span> <br/>
+                                                <input id="id_xml_file" type="file" name="xml_file" required />
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </label>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary" id="submit-upload" disabled>Upload Files</button>
+                    </form>
+                    {% endif %}
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% if form %}
+    {% block custom_scripts %}
+    <script src="{% static 'js/inputValidation.js' %}" type="text/javascript"></script>
+    {% endblock %}
+{% endif %}

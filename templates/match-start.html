@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Match App Start Page</h1>
+    </div>
+    <div class="col-12">
+        <div class="dwn-block">
+            <div class="card text-center">
+                <div class="card-body">
+                {% if need_to_process or need_to_import_users%}
+                <h5 class="card-title">Select next step.</h5>
+                <p class="card-text">You files have been downloaded.</p>
+                {% else %}
+                <h5 class="card-title">You haven't downloaded data source files yet.</h5>
+                <p class="card-text">Start this process by clicking on button below.</p>
+                {% endif %}
+                {% if need_to_process %}
+                <a href="{% url 'match_app:match-data' %}" class="btn btn-primary">Match CSV and XML</a>
+                <a href="{% url 'match_app:delete-dataset' %}" class="btn btn-warning">Download new files</a>
+                {% elif need_to_import_users %}
+                <a href="{% url 'match_app:import-users' %}" class="btn btn-primary">Import new users</a>
+                <a href="{% url 'match_app:delete-dataset' %}" class="btn btn-warning">Download new files</a>
+                {% else %}
+                <a href="{% url 'match_app:create-dataset' %}" class="btn btn-primary">Download CSV and XML</a>
+                {% endif %}
+                
+                <!-- <a href="#" class="btn btn-primary">Download CSV and XML</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

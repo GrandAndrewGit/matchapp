@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Profile page</h1>
+    </div>
+    <div class="col-12">
+        <div class="dwn-block">
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <h4><small class="text-muted">Username: </small>{{ user.username }}</h4>
+                    <h4><small class="text-muted">First name: </small>{{ user.first_name }}</>
+                    <h4><small class="text-muted">Last name: </small>{{ user.last_name }}</h4>
+                    <h4><small class="text-muted">Date joined: </small>{{ user.date_joined }}</h4>
+                </div>
+                <div class="col-lg-6 col-12">
+                    {% if user.avatar_link %}
+                    <img src="{{ user.avatar_link }}" class="img-fluid" alt="user-avatar">
+                    {% else %}
+                    <span>No avatar</span>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
