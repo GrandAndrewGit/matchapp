@@ -6,9 +6,10 @@ users_app/migrations
 working_files/
 
 db.sqlite3
+manage.py
 
 
-
+.vscode
 .vscode/* 
 !.vscode/settings.json 
 !.vscode/tasks.json 
