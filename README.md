@@ -11,7 +11,7 @@
 7. Replace settings.py and urls.py in new "core" folder BUT save django SECRET_KEY in settings.py
 8. Create migrations via commands "python manage.py makemigrations match_app" and "python manage.py makemigrations users_app"
 9. Apply migrations and create sqlite database "python manage.py migrate"
-10. Create superuser and runserver to start testing app
+10. Create superuser and runserver to start testing app with data from "sourcedata" folder.
 
 
 # Short description of App
